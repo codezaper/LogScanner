@@ -2,7 +2,6 @@ package com.log.scanner.service;
 
 import com.log.scanner.pojo.LogEntry;
 import com.log.scanner.pojo.LogHeader;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class RuleEngine {
-    private List<Rule> rules;
+    private final List<Rule> rules;
 
     public RuleEngine() {
         this.rules = new ArrayList<>();
