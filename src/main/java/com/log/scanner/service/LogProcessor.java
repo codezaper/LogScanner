@@ -19,6 +19,7 @@ public class LogProcessor {
     Map<LogHeader,List<LogEntry>> storeMap = new HashMap<>();
 
     public void processLogLine(String officeName, String userName, Integer monthDay, String timeString, String logString) {
+        System.out.println(officeName+"\t\t\t"+userName+"\t\t\t"+monthDay+"\t\t\t\t"+timeString+"\t\t"+logString);
         int hour = LogProcessorUtil.getHour(timeString);
         long timeInMillis = LogProcessorUtil.convertToMilliseconds(timeString);
         String logFileName = officeName + "_" + userName + "_" + monthDay;

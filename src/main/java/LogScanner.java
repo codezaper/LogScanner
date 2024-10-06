@@ -1,6 +1,4 @@
 import com.log.scanner.service.LogProcessor;
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -9,22 +7,18 @@ public class LogScanner
 {
     public static void main( String[] args ) {
         Scanner scanner = new Scanner(System.in);
-
+        LogProcessor logProcessor = new LogProcessor();
         System.out.println("****** Document Analysis App ******");
-
+        // Load Log file
+        loadData(logProcessor);
         while (true) {
-            Optional<String> officeName = promptUser(scanner, "Enter Office Name (Mumbai/Genova): ",false);
+            Optional<String> officeName = promptUser(scanner, "\nEnter Office Name (Mumbai/Genova): ",false);
             Optional<String> userName = promptUser(scanner, "Enter User Name (Paco/Yogesh): ",false);
             Optional<Integer> monthDay = promptUser(scanner, "Enter Month Day (5/6): ",true);
             Optional<Integer> hourToSearch = promptUser(scanner, "Enter Hour (14/15/17): ",true);
 
             System.out.println("\nOffice Name : " + officeName.orElse("NA") + ", User Name : " +
                     userName.orElse("NA") + ", Month Day : "+ monthDay.orElse(0) + ", Hour : " + hourToSearch.orElse(0));
-
-            LogProcessor logProcessor = new LogProcessor();
-
-            // Load Log file
-            loadData(logProcessor);
 
             // Print Log Stats
             logProcessor.printStats(officeName.orElse(null),userName.orElse(null),monthDay.orElse(null),hourToSearch.orElse(null));
@@ -37,13 +31,6 @@ public class LogScanner
             }
         }
         scanner.close();
-
-       /* Optional<String> officeName = args.length > 0 ? Optional.of(args[0]) : Optional.empty();
-        Optional<String> userName = args.length > 1 ? Optional.of(args[1]) : Optional.empty();
-        Optional<Integer> monthDay = args.length > 2 ? Optional.of(Integer.valueOf(args[2])) : Optional.empty();
-        Optional<Integer> hourToSearch = args.length > 3 ? Optional.of(Integer.valueOf(args[3])) : Optional.empty();*/
-
-
     }
 
     private static <T> Optional<T> promptUser(Scanner scanner, String message, boolean isInteger) {
@@ -66,6 +53,7 @@ public class LogScanner
     }
 
     private static void loadData(LogProcessor logProcessor) {
+        System.out.println("Office Name\t\tUserName\t\tMonthDay\t\tTime\t\t\t\tLogString");
         logProcessor.processLogLine("Genova", "Paco", 5, "14:27:30.646", "*********Starting scan********");
         logProcessor.processLogLine("Genova", "Paco", 5, "14:37:35.646", "Scan done. Image loaded in memory");
         logProcessor.processLogLine("Genova", "Paco", 5, "14:47:35.647", "Saving sample TIF image in share disc ...");
