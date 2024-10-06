@@ -1,28 +1,68 @@
 import com.log.scanner.service.LogProcessor;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Optional;
+import java.util.Scanner;
 
-/**
- * Hello world!
- *
- */
+
 public class LogScanner
 {
     public static void main( String[] args ) {
-        Optional<String> officeName = args.length > 0 ? Optional.of(args[0]) : Optional.empty();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("****** Document Analysis App ******");
+
+        while (true) {
+            Optional<String> officeName = promptUser(scanner, "Enter Office Name (Mumbai/Genova): ",false);
+            Optional<String> userName = promptUser(scanner, "Enter User Name (Paco/Yogesh): ",false);
+            Optional<Integer> monthDay = promptUser(scanner, "Enter Month Day (5/6): ",true);
+            Optional<Integer> hourToSearch = promptUser(scanner, "Enter Hour (14/15/17): ",true);
+
+            System.out.println("\nOffice Name : " + officeName.orElse("NA") + ", User Name : " +
+                    userName.orElse("NA") + ", Month Day : "+ monthDay.orElse(0) + ", Hour : " + hourToSearch.orElse(0));
+
+            LogProcessor logProcessor = new LogProcessor();
+
+            // Load Log file
+            loadData(logProcessor);
+
+            // Print Log Stats
+            logProcessor.printStats(officeName.orElse(null),userName.orElse(null),monthDay.orElse(null),hourToSearch.orElse(null));
+
+            System.out.print("Want to continue (Y/N): ");
+            String wantToContinue = scanner.nextLine();
+
+            if(wantToContinue.equalsIgnoreCase("N")) {
+                break;
+            }
+        }
+        scanner.close();
+
+       /* Optional<String> officeName = args.length > 0 ? Optional.of(args[0]) : Optional.empty();
         Optional<String> userName = args.length > 1 ? Optional.of(args[1]) : Optional.empty();
         Optional<Integer> monthDay = args.length > 2 ? Optional.of(Integer.valueOf(args[2])) : Optional.empty();
-        Optional<Integer> hourToSearch = args.length > 3 ? Optional.of(Integer.valueOf(args[3])) : Optional.empty();
+        Optional<Integer> hourToSearch = args.length > 3 ? Optional.of(Integer.valueOf(args[3])) : Optional.empty();*/
 
-        System.out.println("\nOffice Name : " + officeName.orElse("NA") + ", User Name : " + userName.orElse("NA") + ", Month Day : "+ monthDay.orElse(0) + ", Hour : " + hourToSearch.orElse(0)+"\n");
 
-        LogProcessor logProcessor = new LogProcessor();
+    }
 
-        // Load Log file
-        loadData(logProcessor);
+    private static <T> Optional<T> promptUser(Scanner scanner, String message, boolean isInteger) {
+        System.out.print(message);
+        String input = scanner.nextLine();
+        if (input.isEmpty()) {
+            return Optional.empty();
+        }
 
-        // Print Log Stats
-        logProcessor.printStats(officeName.orElse(""),userName.orElse(""),monthDay.orElse(null),hourToSearch.orElse(null));
+        if (isInteger) {
+            try {
+                return Optional.of((T) Integer.valueOf(input)); // Cast to T
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                return promptUser(scanner, message, isInteger); // Retry on invalid input
+            }
+        } else {
+            return Optional.of((T) input); // Cast to T
+        }
     }
 
     private static void loadData(LogProcessor logProcessor) {
