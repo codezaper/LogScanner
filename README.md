@@ -17,11 +17,11 @@ Enter the respective values prompted at each step.
 ## Limitations
 Since this is loaded with dummy data containing only a few values, the filters are static:
 
-**Office Name**: Options are Mumbai or Genova.
-**User Name**: Options are Paco or Yogesh.
-**Month Day**: Options are 5 or 6.
-**Hour**: Options are 14, 15, or 17.
-**Continue**: Choose Y for yes to continue or N for no to exit.
+-  **Office Name**: Options are Mumbai or Genova.
+-  **User Name**: Options are Paco or Yogesh.
+-  **Month Day**: Options are 5 or 6.
+-  **Hour**: Options are 14, 15, or 17.
+-  **Continue**: Choose Y for yes to continue or N for no to exit.
 
 Ifsimply press enter without inserting any value for all prompt, it will display all available data.
 
