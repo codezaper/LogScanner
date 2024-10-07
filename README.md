@@ -4,15 +4,12 @@
 
 ## Build
 Run the command:
-
-```
 Go to /LogScanner folder
 
 Run the command:
 
 ```
 mvn clean install
-```
 ```
 
 ## Execution
