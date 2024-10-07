@@ -13,7 +13,8 @@ mvn clean install
 ```
 
 ## Execution
-Download the JAR file (LogScanner-1.0-jar-with-dependencies.jar) from the following link: [link]([doc:linking-to-pages#anchor-links](https://github.com/codezaper/LogScanner/blob/main/LogScanner-1.0-jar-with-dependencies.jar)) LogScanner JAR
+Download the JAR file (LogScanner-1.0-jar-with-dependencies.jar) from the following 
+https://github.com/codezaper/LogScanner/blob/main/LogScanner-1.0-jar-with-dependencies.jar
 
 Run the command:
 
