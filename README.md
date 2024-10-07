@@ -24,6 +24,7 @@ Since this is loaded with dummy data containing only a few values, the filters a
 -  **Continue**: Choose Y for yes to continue or N for no to exit.
 
 Ifsimply press enter without inserting any value for all prompt, it will display all available data.
+![image](https://github.com/user-attachments/assets/86c6a7b4-af34-4df4-9e6b-6c4ab7dc8ee3)
 
 
 
