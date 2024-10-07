@@ -1,6 +1,6 @@
 ## Prerequisites
-Java 17: Ensure that you have Java 17 installed and properly configured.
-Maven: Required for managing dependencies and building the project.
+-  Java 17: Ensure that you have Java 17 installed and properly configured.
+-  Maven: Required for managing dependencies and building the project.
 
 ## Execution
 Download the JAR file (LogScanner-1.0-jar-with-dependencies.jar) from the following link: LogScanner JAR
